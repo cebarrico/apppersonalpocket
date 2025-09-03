@@ -3,15 +3,12 @@ import { Database } from "./Database";
 
 // Valores hardcoded para eliminar problemas de variáveis de ambiente
 
-// Exportar uma instância padrão do Supabase (sem fallbacks)
-const pkgSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const pkgSupabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-if (!pkgSupabaseUrl || !pkgSupabaseAnonKey) {
-  throw new Error(
-    "Variáveis NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY não configuradas para @pocket-trainer-hub/supabase-client."
-  );
-}
+// Exportar uma instância padrão do Supabase com fallbacks não sensíveis
+// Em produção, configure as variáveis no ambiente para não usar estes fallbacks
+const pkgSupabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || "https://your-project-id.supabase.co";
+const pkgSupabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "your-anon-key";
 
 export const supabase = createClient<Database>(
   pkgSupabaseUrl,
