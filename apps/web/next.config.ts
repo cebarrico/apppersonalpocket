@@ -1,35 +1,47 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Configurações para produção
+  // Configuração mínima para produção
+  swcMinify: true,
+  poweredByHeader: false,
+  // Configurações experimentais para resolver problemas de build
   experimental: {
-    serverComponentsExternalPackages: ["@react-pdf/renderer"],
+    esmExternals: "loose",
   },
-  // Headers para CORS se necessário
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET, POST, PUT, DELETE, OPTIONS",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value: "Content-Type, Authorization",
-          },
-        ],
-      },
-    ];
+  // Webpack config para resolver problemas de build
+  webpack: (config, { isServer, webpack }) => {
+    // Polyfill para __dirname em ambiente ESM
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __dirname: JSON.stringify(process.cwd()),
+      })
+    );
+
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+        os: false,
+        stream: false,
+        util: false,
+      };
+    }
+
+    // Configuração específica para @react-pdf/renderer
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
+
+    return config;
   },
 };
 
