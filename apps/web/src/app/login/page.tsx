@@ -88,8 +88,10 @@ const Login = () => {
           <div className="flex items-center justify-center mb-4">
             <div className="bg-aqua/10 p-2 rounded-xl">
               <Image
-                src={"../../../public/logo.png"}
+                src="/logo.png"
                 alt="logo"
+                width={32}
+                height={32}
                 className="w-8 h-8"
               />
             </div>

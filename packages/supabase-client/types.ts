@@ -40,7 +40,8 @@ export type AppointmentStatus =
   | "scheduled"
   | "confirmed"
   | "cancelled"
-  | "completed";
+  | "completed"
+  | "missed";
 
 export type StudentType = "presencial" | "remoto";
 export type RequesterRole = "student" | "trainer";

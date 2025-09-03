@@ -116,8 +116,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex items-center space-x-3">
               <div className="bg-aqua/10 p-2 rounded-xl">
                 <Image
-                  src={"../../public/logo.png"}
+                  src="/logo.png"
                   alt="logo"
+                  width={40}
+                  height={40}
                   className="w-10 h-10"
                 />
               </div>

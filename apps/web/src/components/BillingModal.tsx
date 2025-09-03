@@ -12,10 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import {
-  Appointment,
-  AppointmentStatus,
-} from "@pocket-trainer-hub/supabase-client";
+import { Appointment } from "@pocket-trainer-hub/supabase-client";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export interface BillingModalProps {
@@ -36,7 +33,7 @@ export interface BillingModalProps {
 
 const formatDateInput = (d: Date) => d.toISOString().split("T")[0];
 
-const mapStatus = (status: AppointmentStatus | null): "Presente" | "Falta" => {
+const mapStatus = (status: string | null): "Presente" | "Falta" => {
   if (status === "completed" || status === "confirmed") return "Presente";
   if (status === "missed" || status === "cancelled") return "Falta";
   // "scheduled" ou null não contam como cobrança
@@ -72,7 +69,7 @@ export const BillingModal: React.FC<BillingModalProps> = ({
 
     const items = selected.map((a) => ({
       date: a.date,
-      status: mapStatus(a.status as AppointmentStatus | null),
+      status: mapStatus(a.status as string | null),
     }));
 
     const present = items.filter((i) => i.status === "Presente").length;
@@ -116,7 +113,7 @@ export const BillingModal: React.FC<BillingModalProps> = ({
         // Seleciona por padrão: completed/confirmed/missed/cancelled = true; scheduled = false
         const nextSelected: Record<string, boolean> = {};
         for (const a of fetched) {
-          const st = (a.status as AppointmentStatus | null) || null;
+          const st = (a.status as string | null) || null;
           nextSelected[a.id] =
             st === "completed" ||
             st === "confirmed" ||
@@ -126,6 +123,7 @@ export const BillingModal: React.FC<BillingModalProps> = ({
         setSelectedById(nextSelected);
       }
     } catch (err) {
+      console.error("Erro ao carregar agendamentos:", err);
       setError("Erro inesperado ao carregar agendamentos");
       setAppointments([]);
     } finally {
@@ -153,9 +151,17 @@ export const BillingModal: React.FC<BillingModalProps> = ({
           <DialogTitle className="text-ice-white">
             Gerar PDF de cobrança
           </DialogTitle>
+          <div className="text-light-gray-text text-sm">
+            Aluno: {studentName}
+          </div>
         </DialogHeader>
 
         <div className="grid gap-4">
+          {error && (
+            <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded p-2">
+              {error}
+            </div>
+          )}
           <div className="grid gap-2">
             <Label className="text-ice-white">Período</Label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -213,9 +219,7 @@ export const BillingModal: React.FC<BillingModalProps> = ({
               {appointments
                 .filter((a) => a.date >= startDate && a.date <= endDate)
                 .map((a) => {
-                  const status = mapStatus(
-                    a.status as AppointmentStatus | null
-                  );
+                  const status = mapStatus(a.status as string | null);
                   const checked = !!selectedById[a.id];
                   return (
                     <div

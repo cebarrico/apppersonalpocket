@@ -21,7 +21,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import logo from "../../public/logo.png";
 import { NotificationBell } from "./NotificationBell";
 import { AppointmentModal } from "./AppointmentModal";
 import { Badge } from "@/components/ui/badge";
@@ -122,7 +121,13 @@ export const NavbarMobile: React.FC<NavbarMobileProps> = ({
             onClick={() => handleMenuItemClick("dashboard")}
           >
             <div className="bg-aqua/10 p-2 rounded-xl">
-              <Image src={logo} alt="logo" className="w-8 h-8" />
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
             </div>
             <div>
               <h1 className="text-base font-semibold text-ice-white">
