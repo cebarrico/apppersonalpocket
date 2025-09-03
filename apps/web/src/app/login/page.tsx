@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
+
 import { Mail, Lock, UserPlus } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { RegisterModal } from "@/components/RegisterModal";
@@ -87,7 +87,11 @@ const Login = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <div className="bg-aqua/10 p-2 rounded-xl">
-              <Image src={logo} alt="logo" className="w-8 h-8" />
+              <Image
+                src={"../../../public/logo.png"}
+                alt="logo"
+                className="w-8 h-8"
+              />
             </div>
           </div>
           <h1 className="text-3xl font-bold text-ice-white mb-2">
