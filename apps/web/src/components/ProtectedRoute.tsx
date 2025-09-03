@@ -22,7 +22,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
     if (!loading && user && role && user.role !== role) {
       const correctDashboard =
-        user.role === "teacher" ? "/teacher/dashboard" : "/student/dashboard";
+        user.role === "teacher" ? "/teacher-dashboard" : "/student-dashboard";
       navigate.push(correctDashboard);
     }
   }, [user, loading, role, navigate]);
