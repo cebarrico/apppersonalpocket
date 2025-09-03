@@ -15,7 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
-import logo from "../../public/logo.png";
+
 import { Badge } from "@/components/ui/badge";
 import { NotificationBell } from "./NotificationBell";
 import { useSubscription } from "../hooks/use-subscription";
@@ -115,7 +115,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="bg-aqua/10 p-2 rounded-xl">
-                <Image src={logo} alt="logo" className="w-10 h-10" />
+                <Image
+                  src={"../../public/logo.png"}
+                  alt="logo"
+                  className="w-10 h-10"
+                />
               </div>
               <div>
                 <h1 className="text-lg font-semibold text-ice-white">
