@@ -1,12 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "../../supabase";
+import { StudentTrainerRequest } from "@pocket-trainer-hub/supabase-client";
 
 export function useTrainerRequests(userId: string) {
-  const [sentRequests, setSentRequests] = useState([]);
-  const [receivedRequests, setReceivedRequests] = useState([]);
+  const [sentRequests, setSentRequests] = useState<StudentTrainerRequest[]>([]);
+  const [receivedRequests, setReceivedRequests] = useState<
+    StudentTrainerRequest[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
+    if (!userId) return;
+
     setLoading(true);
 
     const [sent, received] = await Promise.all([
@@ -24,7 +29,7 @@ export function useTrainerRequests(userId: string) {
     if (sent.data) setSentRequests(sent.data);
     if (received.data) setReceivedRequests(received.data);
     setLoading(false);
-  };
+  }, [userId]);
 
   const sendRequest = async (targetId: string, role: "student" | "trainer") => {
     return await supabase.from("student_trainer_requests").insert([
@@ -56,8 +61,8 @@ export function useTrainerRequests(userId: string) {
   };
 
   useEffect(() => {
-    if (userId) fetchRequests();
-  }, [userId]);
+    fetchRequests();
+  }, [fetchRequests]);
 
   return {
     sentRequests,

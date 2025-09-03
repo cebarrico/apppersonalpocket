@@ -18,6 +18,8 @@ interface AuthContextType {
   user: UserProfile | null;
   userProfile: UserProfile | null; // Manter compatibilidade
   loading: boolean;
+  isTeacher: boolean;
+  isStudent: boolean;
   signIn: (
     email: string,
     password: string
@@ -238,6 +240,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     user,
     userProfile: user, // Manter compatibilidade
     loading,
+    isTeacher: user?.role === "teacher",
+    isStudent: user?.role === "student",
     signIn,
     signUp,
     signOut,
