@@ -2,37 +2,51 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  // Verificar se as variáveis de ambiente estão disponíveis
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error(
+      "Variáveis de ambiente do Supabase não configuradas no middleware"
+    );
+    return NextResponse.next();
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => {
-            request.cookies.set(name, value);
-          });
-          supabaseResponse = NextResponse.next({
-            request,
-          });
-          cookiesToSet.forEach(({ name, value, options }) => {
-            supabaseResponse.cookies.set(name, value, options);
-          });
-        },
+  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
       },
-    }
-  );
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value }) => {
+          request.cookies.set(name, value);
+        });
+        supabaseResponse = NextResponse.next({
+          request,
+        });
+        cookiesToSet.forEach(({ name, value, options }) => {
+          supabaseResponse.cookies.set(name, value, options);
+        });
+      },
+    },
+  });
 
-  // Verificar se há um usuário autenticado
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  // Verificar se há um usuário autenticado (com try/catch para produção)
+  let session = null;
+  try {
+    const {
+      data: { session: userSession },
+    } = await supabase.auth.getSession();
+    session = userSession;
+  } catch (error) {
+    console.error("Erro ao verificar sessão no middleware:", error);
+    return NextResponse.next();
+  }
 
   // Rotas que requerem autenticação
   const protectedRoutes = ["/student-dashboard", "/teacher-dashboard"];
@@ -54,20 +68,27 @@ export async function middleware(request: NextRequest) {
 
   // Redirecionar usuários autenticados para dashboard
   if (isPublicOnlyRoute && session) {
-    // Buscar o perfil do usuário para determinar o dashboard correto
-    const { data: userProfile } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", session.user.id)
-      .single();
+    try {
+      // Buscar o perfil do usuário para determinar o dashboard correto
+      const { data: userProfile } = await supabase
+        .from("users")
+        .select("role")
+        .eq("id", session.user.id)
+        .single();
 
-    const dashboardUrl =
-      userProfile?.role === "teacher"
-        ? "/teacher-dashboard"
-        : "/student-dashboard";
+      const dashboardUrl =
+        userProfile?.role === "teacher"
+          ? "/teacher-dashboard"
+          : "/student-dashboard";
 
-    const redirectUrl = new URL(dashboardUrl, request.url);
-    return NextResponse.redirect(redirectUrl);
+      const redirectUrl = new URL(dashboardUrl, request.url);
+      return NextResponse.redirect(redirectUrl);
+    } catch (error) {
+      console.error("Erro ao buscar perfil do usuário no middleware:", error);
+      // Em caso de erro, redirecionar para dashboard padrão
+      const redirectUrl = new URL("/student-dashboard", request.url);
+      return NextResponse.redirect(redirectUrl);
+    }
   }
 
   return supabaseResponse;
@@ -77,11 +98,12 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
+     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public (public files)
+     * - public files (images, etc)
      */
-    "/((?!_next/static|_next/image|favicon.ico|public).*)",
+    "/((?!api|_next/static|_next/image|_next/webpack-hmr|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js)$).*)",
   ],
 };
