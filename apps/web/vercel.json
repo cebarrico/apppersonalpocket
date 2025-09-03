@@ -1,10 +1,10 @@
 {
-  "projects": {
-    "web": {
+
+
       "rootDirectory": "apps/web",
       "framework": "nextjs",
       "buildCommand": "npm run build",
       "outputDirectory": ".next"
     }
-  }
-}
+  
+
