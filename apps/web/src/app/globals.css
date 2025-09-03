@@ -1,0 +1,316 @@
+@import "react-datepicker/dist/react-datepicker.css";
+@import "tailwindcss";
+
+/* Personal Pocket Design System - Dark Theme */
+@theme {
+  /* Colors */
+  --color-background: #1e2a38; /* dark-teal */
+  --color-foreground: #f1f5f9; /* ice-white */
+
+  --color-card: #36495c; /* light-gray */
+  --color-card-foreground: #f1f5f9; /* ice-white */
+
+  --color-popover: #36495c; /* light-gray */
+  --color-popover-foreground: #f1f5f9; /* ice-white */
+
+  --color-primary: #3dd9b3; /* aqua */
+  --color-primary-foreground: #1e2a38; /* dark-teal */
+
+  --color-secondary: #2c3a4a; /* medium-blue-gray */
+  --color-secondary-foreground: #f1f5f9; /* ice-white */
+
+  --color-muted: #2c3a4a; /* medium-blue-gray */
+  --color-muted-foreground: #aebecd; /* light-gray-text */
+
+  --color-accent: #3dd9b3; /* aqua */
+  --color-accent-foreground: #1e2a38; /* dark-teal */
+
+  --color-destructive: #ff5c5c; /* coral-red */
+  --color-destructive-foreground: #f1f5f9; /* ice-white */
+
+  --color-border: #36495c; /* light-gray */
+  --color-input: #36495c; /* light-gray */
+  --color-ring: #3dd9b3; /* aqua */
+
+  /* Sidebar colors */
+  --color-sidebar-background: #2c3a4a; /* medium-blue-gray */
+  --color-sidebar-foreground: #f1f5f9; /* ice-white */
+  --color-sidebar-primary: #3dd9b3; /* aqua */
+  --color-sidebar-primary-foreground: #1e2a38; /* dark-teal */
+  --color-sidebar-accent: #36495c; /* light-gray */
+  --color-sidebar-accent-foreground: #f1f5f9; /* ice-white */
+  --color-sidebar-border: #36495c; /* light-gray */
+  --color-sidebar-ring: #3dd9b3; /* aqua */
+
+  /* Personal Pocket custom colors */
+  --color-dark-teal: #1e2a38;
+  --color-medium-blue-gray: #2c3a4a;
+  --color-light-gray: #36495c;
+  --color-ice-white: #f1f5f9;
+  --color-light-gray-text: #aebecd;
+  --color-aqua: #3dd9b3;
+  --color-dark-aqua: #1e6956;
+  --color-coral-red: #ff5c5c;
+  --color-fuschia-pink: #d93d64;
+  --color-cian-blue: #00fff6;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Font families */
+  --font-family-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Box shadows */
+  --shadow-aqua: 0 4px 14px 0 rgba(61, 217, 179, 0.1);
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.3s ease-out;
+}
+
+/* Base styles */
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-family-inter);
+}
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-semibold;
+}
+
+.gold-metal {
+  background: linear-gradient(135deg, #f6e27a, #d4af37, #f6e27a);
+  color: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+  border: 1px solid #d4af37;
+}
+.silver-metal {
+  background: linear-gradient(135deg, #f2f2f2, #c0c0c0, #f2f2f2);
+  color: #2c2c2c;
+  box-shadow: 0 2px 8px rgba(160, 160, 160, 0.4);
+  border: 1px solid #c0c0c0;
+}
+.bronze-metal {
+  background: linear-gradient(135deg, #d9a066, #cd7f32, #d9a066);
+  color: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(205, 127, 50, 0.4);
+  border: 1px solid #cd7f32;
+}
+/* Exemplo em globals.css */
+
+/* Aplica a todo o site */
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #3dd9b3 #2c3a4a; /* Cor da barra | fundo */
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Fundo escuro */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3dd9b3; /* Cor predominante */
+  border-radius: 10px;
+  border: 2px solid #1e1e1e; /* Espaço entre thumb e track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #30b495; /* Um tom mais escuro ao passar o mouse */
+}
+
+/* Component classes */
+.gradient-bg {
+  background: linear-gradient(135deg, #1e2a38 0%, #2c3a4a 100%);
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.aqua-glow {
+  box-shadow: var(--shadow-aqua);
+}
+
+/* Keyframes for animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* React DatePicker Customization */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker {
+  font-family: inherit;
+  border: 1px solid rgb(59 130 246 / 0.3);
+  border-radius: 0.375rem;
+  background-color: rgb(51 65 85);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.react-datepicker__header {
+  background-color: rgb(30 41 59);
+  border-bottom: 1px solid rgb(59 130 246 / 0.3);
+  color: rgb(226 232 240);
+}
+
+.react-datepicker__current-month,
+.react-datepicker__navigation-icon::before {
+  color: rgb(226 232 240);
+}
+
+.react-datepicker__day-name {
+  color: rgb(148 163 184);
+}
+
+.react-datepicker__day {
+  color: rgb(226 232 240);
+  background-color: transparent;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgb(59 130 246 / 0.2);
+  color: rgb(156 163 175);
+}
+
+.react-datepicker__day--selected {
+  background-color: rgb(6 182 212);
+  color: rgb(15 23 42);
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: rgb(8 145 178);
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgb(59 130 246 / 0.3);
+}
+
+.react-datepicker__day--outside-month {
+  color: rgb(100 116 139);
+}
+
+.react-datepicker__navigation {
+  top: 10px;
+}
+
+.react-datepicker__navigation--previous {
+  left: 8px;
+}
+
+.react-datepicker__navigation--next {
+  right: 8px;
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown {
+  background-color: rgb(51 65 85);
+  border: 1px solid rgb(59 130 246 / 0.3);
+  color: rgb(226 232 240);
+}
+
+.react-datepicker__year-option,
+.react-datepicker__month-option {
+  color: rgb(226 232 240);
+}
+
+.react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover {
+  background-color: rgb(59 130 246 / 0.2);
+}
+
+.react-datepicker__year-option--selected,
+.react-datepicker__month-option--selected {
+  background-color: rgb(6 182 212);
+  color: rgb(15 23 42);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .react-datepicker {
+    font-size: 16px; /* Prevents zoom on iOS */
+    transform: scale(1.1);
+    transform-origin: center top;
+  }
+
+  .react-datepicker__day {
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+  }
+
+  .react-datepicker__header {
+    padding: 1rem 0 0.5rem;
+  }
+}
+.react-datepicker__header {
+  @apply !bg-dark-teal !text-white  !border-aqua;
+}
+.react-datepicker__navigation {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  line-height: 2.5rem !important;
+  margin-top: 0.5rem !important;
+}
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply !text-white;
+}
+.react-datepicker__day-name {
+  @apply !text-aqua;
+}
+.react-datepicker__day--selected {
+  @apply !bg-aqua !text-black;
+}
+
+.react-datepicker__day--today {
+  @apply !border !border-aqua !bg-aqua !text-white;
+}

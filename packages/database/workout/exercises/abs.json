@@ -1,0 +1,53 @@
+[
+  {
+    "id": "abs-001",
+    "name": "Abdominal Tradicional",
+    "muscle_group": "Abdômen",
+    "equipment": "Peso corporal",
+    "instructions": "Deite-se de costas com os joelhos flexionados. Coloque as mãos atrás da cabeça e contraia o abdômen levantando o tronco.",
+    "image_url": "https://example.com/images/abdominal-tradicional.jpg",
+    "video_url": "https://example.com/videos/abdominal-tradicional.mp4",
+    "difficulty": "beginner",
+    "primary_muscles": ["rectus_abdominis"],
+    "secondary_muscles": ["hip_flexors"],
+    "tips": [
+      "Não puxe o pescoço",
+      "Foque na contração abdominal",
+      "Mantenha a lombar no chão"
+    ]
+  },
+  {
+    "id": "abs-002",
+    "name": "Prancha",
+    "muscle_group": "Abdômen",
+    "equipment": "Peso corporal",
+    "instructions": "Posicione-se em prancha com antebraços e pés no chão. Mantenha o corpo reto da cabeça aos pés, contraindo o core.",
+    "image_url": "https://example.com/images/prancha.jpg",
+    "video_url": "https://example.com/videos/prancha.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["core"],
+    "secondary_muscles": ["shoulders", "glutes"],
+    "tips": [
+      "Mantenha o corpo reto",
+      "Não levante o quadril",
+      "Respire normalmente"
+    ]
+  },
+  {
+    "id": "abs-003",
+    "name": "Elevação de Pernas",
+    "muscle_group": "Abdômen",
+    "equipment": "Peso corporal",
+    "instructions": "Deite-se de costas com as pernas estendidas. Eleve as pernas até formar um ângulo de 90 graus com o tronco, depois desça controladamente.",
+    "image_url": "https://example.com/images/elevacao-pernas.jpg",
+    "video_url": "https://example.com/videos/elevacao-pernas.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["lower_abs"],
+    "secondary_muscles": ["hip_flexors"],
+    "tips": [
+      "Não deixe as pernas tocarem o chão",
+      "Controle o movimento",
+      "Mantenha a lombar no chão"
+    ]
+  }
+] 

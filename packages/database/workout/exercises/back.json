@@ -1,0 +1,53 @@
+[
+  {
+    "id": "back-001",
+    "name": "Puxada na Frente",
+    "muscle_group": "Costas",
+    "equipment": "Máquina de puxada",
+    "instructions": "Sente-se na máquina com as coxas fixadas. Segure a barra com pegada pronada, mais larga que os ombros. Puxe a barra até a parte superior do peito, contraindo as costas.",
+    "image_url": "https://example.com/images/puxada-frente.jpg",
+    "video_url": "https://example.com/videos/puxada-frente.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["latissimus_dorsi"],
+    "secondary_muscles": ["rhomboids", "biceps", "posterior_deltoid"],
+    "tips": [
+      "Mantenha o peito estufado",
+      "Puxe com as costas, não com os braços",
+      "Controle o movimento na subida"
+    ]
+  },
+  {
+    "id": "back-002",
+    "name": "Remada Curvada",
+    "muscle_group": "Costas",
+    "equipment": "Barra",
+    "instructions": "Fique em pé com os pés afastados na largura dos ombros. Curve o tronco para frente mantendo as costas retas. Puxe a barra em direção ao abdômen.",
+    "image_url": "https://example.com/images/remada-curvada.jpg",
+    "video_url": "https://example.com/videos/remada-curvada.mp4",
+    "difficulty": "advanced",
+    "primary_muscles": ["latissimus_dorsi", "rhomboids"],
+    "secondary_muscles": ["biceps", "posterior_deltoid"],
+    "tips": [
+      "Mantenha a coluna neutra",
+      "Puxe a barra para o umbigo",
+      "Contraia as escápulas"
+    ]
+  },
+  {
+    "id": "back-003",
+    "name": "Barra Fixa",
+    "muscle_group": "Costas",
+    "equipment": "Barra fixa",
+    "instructions": "Pendure-se na barra com as mãos na largura dos ombros. Puxe o corpo para cima até que o queixo passe da barra, depois desça controladamente.",
+    "image_url": "https://example.com/images/barra-fixa.jpg",
+    "video_url": "https://example.com/videos/barra-fixa.mp4",
+    "difficulty": "advanced",
+    "primary_muscles": ["latissimus_dorsi"],
+    "secondary_muscles": ["rhomboids", "biceps"],
+    "tips": [
+      "Evite balançar o corpo",
+      "Puxe com as costas",
+      "Desça controladamente"
+    ]
+  }
+] 

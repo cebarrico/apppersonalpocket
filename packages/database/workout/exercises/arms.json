@@ -1,0 +1,53 @@
+[
+  {
+    "id": "arms-001",
+    "name": "Rosca Direta",
+    "muscle_group": "Braços",
+    "equipment": "Barra",
+    "instructions": "Fique em pé com os pés afastados na largura dos ombros, segurando a barra com pegada supinada. Flexione os cotovelos levando a barra em direção ao peito.",
+    "image_url": "https://example.com/images/rosca-direta.jpg",
+    "video_url": "https://example.com/videos/rosca-direta.mp4",
+    "difficulty": "beginner",
+    "primary_muscles": ["biceps"],
+    "secondary_muscles": ["brachialis", "forearms"],
+    "tips": [
+      "Mantenha os cotovelos fixos",
+      "Não balance o corpo",
+      "Controle o movimento na descida"
+    ]
+  },
+  {
+    "id": "arms-002",
+    "name": "Tríceps Testa",
+    "muscle_group": "Braços",
+    "equipment": "Barra W",
+    "instructions": "Deite-se no banco com a barra W nas mãos. Flexione apenas os cotovelos, baixando a barra em direção à testa, depois estenda os braços de volta.",
+    "image_url": "https://example.com/images/triceps-testa.jpg",
+    "video_url": "https://example.com/videos/triceps-testa.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["triceps"],
+    "secondary_muscles": ["anconeus"],
+    "tips": [
+      "Mantenha os cotovelos fixos",
+      "Não deixe a barra tocar a testa",
+      "Foque na contração do tríceps"
+    ]
+  },
+  {
+    "id": "arms-003",
+    "name": "Mergulho em Paralelas",
+    "muscle_group": "Braços",
+    "equipment": "Barras paralelas",
+    "instructions": "Apoie-se nas barras paralelas com os braços estendidos. Desça flexionando os cotovelos até sentir um alongamento no peito, depois empurre de volta.",
+    "image_url": "https://example.com/images/mergulho-paralelas.jpg",
+    "video_url": "https://example.com/videos/mergulho-paralelas.mp4",
+    "difficulty": "advanced",
+    "primary_muscles": ["triceps"],
+    "secondary_muscles": ["pectoralis_major", "anterior_deltoid"],
+    "tips": [
+      "Mantenha o corpo ligeiramente inclinado",
+      "Não desça muito",
+      "Controle o movimento"
+    ]
+  }
+] 

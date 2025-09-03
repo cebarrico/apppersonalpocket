@@ -1,0 +1,53 @@
+[
+  {
+    "id": "shoulders-001",
+    "name": "Desenvolvimento com Halteres",
+    "muscle_group": "Ombros",
+    "equipment": "Halteres",
+    "instructions": "Sente-se com um halter em cada mão na altura dos ombros. Empurre os halteres para cima até que os braços fiquem estendidos, depois desça controladamente.",
+    "image_url": "https://example.com/images/desenvolvimento-halteres.jpg",
+    "video_url": "https://example.com/videos/desenvolvimento-halteres.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["anterior_deltoid", "medial_deltoid"],
+    "secondary_muscles": ["triceps", "upper_traps"],
+    "tips": [
+      "Mantenha o core contraído",
+      "Não arquee as costas",
+      "Controle o movimento na descida"
+    ]
+  },
+  {
+    "id": "shoulders-002",
+    "name": "Elevação Lateral",
+    "muscle_group": "Ombros",
+    "equipment": "Halteres",
+    "instructions": "Fique em pé com um halter em cada mão ao lado do corpo. Eleve os braços lateralmente até a altura dos ombros, depois desça controladamente.",
+    "image_url": "https://example.com/images/elevacao-lateral.jpg",
+    "video_url": "https://example.com/videos/elevacao-lateral.mp4",
+    "difficulty": "beginner",
+    "primary_muscles": ["medial_deltoid"],
+    "secondary_muscles": ["anterior_deltoid", "posterior_deltoid"],
+    "tips": [
+      "Mantenha uma ligeira flexão nos cotovelos",
+      "Não eleve além da altura dos ombros",
+      "Controle o movimento"
+    ]
+  },
+  {
+    "id": "shoulders-003",
+    "name": "Elevação Posterior", 
+      "muscle_group": "shoulders    ",
+    "equipment": "Halteres",
+    "instructions": "Curve o tronco para frente com um halter em cada mão. Eleve os braços para trás e para cima, contraindo a parte posterior dos ombros.",
+    "image_url": "https://example.com/images/elevacao-posterior.jpg",
+    "video_url": "https://example.com/videos/elevacao-posterior.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["posterior_deltoid"],
+    "secondary_muscles": ["rhomboids", "middle_traps"],
+    "tips": [
+      "Mantenha uma ligeira flexão nos cotovelos",
+      "Foque na contração posterior",
+      "Não use muito peso"
+    ]
+  }
+] 

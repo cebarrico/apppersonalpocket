@@ -1,0 +1,53 @@
+[
+  {
+    "id": "legs-001",
+    "name": "Agachamento Livre",
+    "muscle_group": "Pernas",
+    "equipment": "Barra",
+    "instructions": "Posicione a barra nas costas, afaste os pés na largura dos ombros. Desça flexionando joelhos e quadris até as coxas ficarem paralelas ao chão, depois suba.",
+    "image_url": "https://example.com/images/agachamento.jpg",
+    "video_url": "https://example.com/videos/agachamento.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["quadriceps", "glutes"],
+    "secondary_muscles": ["hamstrings", "core"],
+    "tips": [
+      "Mantenha os joelhos alinhados com os pés",
+      "Desça até as coxas ficarem paralelas",
+      "Mantenha o core contraído"
+    ]
+  },
+  {
+    "id": "legs-002",
+    "name": "Leg Press",
+    "muscle_group": "Pernas",
+    "equipment": "Máquina leg press",
+    "instructions": "Sente-se na máquina com os pés na plataforma, afastados na largura dos ombros. Desça flexionando os joelhos e empurre de volta à posição inicial.",
+    "image_url": "https://example.com/images/leg-press.jpg",
+    "video_url": "https://example.com/videos/leg-press.mp4",
+    "difficulty": "beginner",
+    "primary_muscles": ["quadriceps", "glutes"],
+    "secondary_muscles": ["hamstrings"],
+    "tips": [
+      "Não trave completamente os joelhos",
+      "Desça até 90 graus",
+      "Mantenha a coluna apoiada"
+    ]
+  },
+  {
+    "id": "legs-003",
+    "name": "Levantamento Terra",
+    "muscle_group": "Pernas",
+    "equipment": "Barra",
+    "instructions": "Fique em pé com os pés afastados na largura dos ombros. Flexione quadris e joelhos para pegar a barra, depois levante estendendo quadris e joelhos.",
+    "image_url": "https://example.com/images/levantamento-terra.jpg",
+    "video_url": "https://example.com/videos/levantamento-terra.mp4",
+    "difficulty": "advanced",
+    "primary_muscles": ["glutes", "hamstrings"],
+    "secondary_muscles": ["quadriceps", "core", "traps"],
+    "tips": [
+      "Mantenha a barra próxima ao corpo",
+      "Inicie o movimento com os quadris",
+      "Mantenha as costas retas"
+    ]
+  }
+] 

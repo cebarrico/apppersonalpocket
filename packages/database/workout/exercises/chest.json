@@ -1,0 +1,53 @@
+[
+  {
+    "id": "chest-001",
+    "name": "Supino Reto",
+    "muscle_group": "Peito",
+    "equipment": "Barra e banco",
+    "instructions": "Deite-se no banco com os pés firmemente apoiados no chão. Segure a barra com as mãos ligeiramente mais largas que os ombros. Desça a barra até o peito e empurre de volta à posição inicial.",
+    "image_url": "https://example.com/images/supino-reto.jpg",
+    "video_url": "https://example.com/videos/supino-reto.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["pectoralis_major"],
+    "secondary_muscles": ["triceps", "anterior_deltoid"],
+    "tips": [
+      "Mantenha os ombros retraídos",
+      "Controle a descida da barra",
+      "Não deixe a barra quicar no peito"
+    ]
+  },
+  {
+    "id": "chest-002", 
+    "name": "Flexão de Braços",
+    "muscle_group": "Peito",
+    "equipment": "Peso corporal",
+    "instructions": "Posicione-se em prancha com as mãos no chão, ligeiramente mais largas que os ombros. Desça o corpo até que o peito quase toque o chão, depois empurre de volta à posição inicial.",
+    "image_url": "https://example.com/images/flexao.jpg",
+    "video_url": "https://example.com/videos/flexao.mp4",
+    "difficulty": "beginner",
+    "primary_muscles": ["pectoralis_major"],
+    "secondary_muscles": ["triceps", "anterior_deltoid", "core"],
+    "tips": [
+      "Mantenha o corpo reto",
+      "Olhe para frente, não para baixo",
+      "Controle o movimento"
+    ]
+  },
+  {
+    "id": "chest-003",
+    "name": "Crucifixo com Halteres",
+    "muscle_group": "Peito",
+    "equipment": "Halteres e banco",
+    "instructions": "Deite-se no banco com um halter em cada mão. Com os braços ligeiramente flexionados, abra os braços em um arco amplo até sentir um alongamento no peito, depois retorne à posição inicial.",
+    "image_url": "https://example.com/images/crucifixo.jpg",
+    "video_url": "https://example.com/videos/crucifixo.mp4",
+    "difficulty": "intermediate",
+    "primary_muscles": ["pectoralis_major"],
+    "secondary_muscles": ["anterior_deltoid"],
+    "tips": [
+      "Mantenha uma ligeira flexão nos cotovelos",
+      "Controle o movimento na descida",
+      "Sinta o alongamento no peito"
+    ]
+  }
+] 

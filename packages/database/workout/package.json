@@ -1,0 +1,17 @@
+{
+  "name": "@pocket-trainer-hub/database-workout",
+  "version": "1.0.0",
+  "description": "Database mockado de exercícios e treinos para Pocket Trainer Hub",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@pocket-trainer-hub/supabase-client": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+} 
