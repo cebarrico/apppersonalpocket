@@ -290,7 +290,10 @@ export const Calendar = () => {
                     {/* Layout responsivo para cards dos alunos */}
                     <div className="flex items-start xl:items-center space-x-3">
                       <Avatar className="h-10 w-10 ring-2 ring-aqua/20 group-hover:ring-aqua/40 transition-all duration-300 flex-shrink-0">
-                        <AvatarImage src={student.avatar} alt={student.name} />
+                        <AvatarImage
+                          src={student.avatar ?? undefined}
+                          alt={student.name}
+                        />
                         <AvatarFallback className="bg-aqua/20 text-aqua">
                           <User className="h-5 w-5" />
                         </AvatarFallback>
