@@ -1,5 +1,5 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -13,17 +13,17 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   role,
 }) => {
   const { user, loading } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   useEffect(() => {
     if (!loading && !user) {
-      navigate("/login", { replace: true });
+      navigate.push("/login");
       return;
     }
 
     if (!loading && user && role && user.role !== role) {
       const correctDashboard =
         user.role === "teacher" ? "/teacher/dashboard" : "/student/dashboard";
-      navigate(correctDashboard, { replace: true });
+      navigate.push(correctDashboard);
     }
   }, [user, loading, role, navigate]);
 
