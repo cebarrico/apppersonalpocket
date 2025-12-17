@@ -70,7 +70,8 @@ export const StudentsList: React.FC<StudentsListProps> = ({
   const { unlinkStudent } = useUnlinkStudent();
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddStudentsModalOpen, setIsAddStudentsModalOpen] = useState(false);
-  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] = useState(false);
+  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] =
+    useState(false);
   const [unlinkingStudentId, setUnlinkingStudentId] = useState<string | null>(
     null
   );
