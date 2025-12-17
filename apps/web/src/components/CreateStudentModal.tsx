@@ -443,4 +443,3 @@ export const CreateStudentModal: React.FC<CreateStudentModalProps> = ({
     </Dialog>
   );
 };
-
