@@ -42,6 +42,7 @@ import { useStudent, useUnlinkStudent } from "../hooks/use-student";
 import { useStudentStats } from "../hooks/use-student-stats";
 import { useAuth } from "../contexts/AuthContext";
 import { AddStudentsModal } from "./addStudents";
+import { CreateStudentModal } from "./CreateStudentModal";
 import { toast } from "../hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useSubscription } from "../hooks/use-subscription";
@@ -69,6 +70,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
   const { unlinkStudent } = useUnlinkStudent();
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddStudentsModalOpen, setIsAddStudentsModalOpen] = useState(false);
+  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] = useState(false);
   const [unlinkingStudentId, setUnlinkingStudentId] = useState<string | null>(
     null
   );
@@ -176,7 +178,7 @@ export const StudentsList: React.FC<StudentsListProps> = ({
             <Button
               className="mt-4"
               disabled={student!.length >= currentPlan.maxStudents}
-              onClick={() => setIsAddStudentsModalOpen(true)}
+              onClick={() => setIsCreateStudentModalOpen(true)}
             >
               <Plus className="h-4 w-4 mr-1" />
               {student!.length >= currentPlan.maxStudents
@@ -495,6 +497,11 @@ export const StudentsList: React.FC<StudentsListProps> = ({
       <AddStudentsModal
         isOpen={isAddStudentsModalOpen}
         onClose={() => setIsAddStudentsModalOpen(false)}
+      />
+      <CreateStudentModal
+        isOpen={isCreateStudentModalOpen}
+        onClose={() => setIsCreateStudentModalOpen(false)}
+        onSuccess={() => window.location.reload()}
       />
       <Toaster />
     </div>

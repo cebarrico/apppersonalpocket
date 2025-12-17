@@ -26,13 +26,56 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 import type { User } from "@pocket-trainer-hub/supabase-client";
 import { useSubscription } from "@/hooks/use-subscription";
+import { useToast } from "@/hooks/use-toast";
 
 export const UserProfile = () => {
   const { user: authUser } = useAuth();
   const [fullUser, setFullUser] = useState<User | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { currentPlan } = useSubscription(authUser?.id || "");
+  const [upgrading, setUpgrading] = useState(false);
+  const { currentPlan, upgradeToPremium, loading: planLoading } = useSubscription(authUser?.id || "");
+  const { toast } = useToast();
+
+  const handleUpgrade = async () => {
+    if (!authUser?.id) {
+      toast({
+        title: "Erro",
+        description: "Usuário não encontrado. Tente fazer login novamente.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUpgrading(true);
+    try {
+      const result = await upgradeToPremium();
+      
+      if (result.success) {
+        toast({
+          title: "Upgrade realizado com sucesso!",
+          description: "Seu plano foi atualizado para Premium. Aproveite os novos recursos!",
+          variant: "default",
+        });
+      } else {
+        toast({
+          title: "Erro no upgrade",
+          description: result.error || "Ocorreu um erro ao fazer o upgrade do plano.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Erro no upgrade:", error);
+      toast({
+        title: "Erro inesperado",
+        description: "Ocorreu um erro inesperado. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setUpgrading(false);
+    }
+  };
+
   useEffect(() => {
     if (authUser?.id) {
       fetchFullUser(authUser.id);
@@ -315,17 +358,37 @@ export const UserProfile = () => {
                   <Separator className="bg-medium-blue-gray" />
 
                   {/* Upgrade */}
-                  <div className="text-center space-y-3">
-                    <p className="text-sm text-light-gray-text">
-                      Precisa de mais recursos?
-                    </p>
-                    <Button className="bg-aqua hover:bg-aqua-dark text-dark-teal">
-                      Fazer Upgrade
-                    </Button>
-                    <p className="text-xs text-light-gray-text">
-                      Funcionalidade disponível em breve
-                    </p>
-                  </div>
+                  {currentPlan.name !== "premium" && (
+                    <div className="text-center space-y-3">
+                      <p className="text-sm text-light-gray-text">
+                        Precisa de mais recursos?
+                      </p>
+                      <Button 
+                        className="bg-aqua hover:bg-aqua-dark text-dark-teal"
+                        onClick={handleUpgrade}
+                        disabled={upgrading || planLoading}
+                      >
+                        {upgrading ? "Fazendo upgrade..." : "Fazer Upgrade para Premium"}
+                      </Button>
+                      <p className="text-xs text-light-gray-text">
+                        Upgrade para o plano Premium com mais recursos
+                      </p>
+                    </div>
+                  )}
+                  
+                  {currentPlan.name === "premium" && (
+                    <div className="text-center space-y-3">
+                      <div className="flex items-center justify-center space-x-2">
+                        <Crown className="h-5 w-5 text-yellow-500" />
+                        <p className="text-sm font-medium text-ice-white">
+                          Você já possui o plano Premium!
+                        </p>
+                      </div>
+                      <p className="text-xs text-light-gray-text">
+                        Aproveite todos os recursos disponíveis
+                      </p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

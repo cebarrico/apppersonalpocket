@@ -15,6 +15,8 @@ interface UseSubscriptionReturn {
   currentPlan: Plan;
   loading: boolean;
   error: string | null;
+  upgradeToPremium: () => Promise<{ success: boolean; error?: string }>;
+  refreshSubscription: () => Promise<void>;
 }
 
 export const useSubscription = (userId: string): UseSubscriptionReturn => {
@@ -88,10 +90,110 @@ export const useSubscription = (userId: string): UseSubscriptionReturn => {
     fetchSubscription();
   }, [userId]);
 
+  const upgradeToPremium = async (): Promise<{ success: boolean; error?: string }> => {
+    if (!userId) {
+      return { success: false, error: "Usuário não encontrado" };
+    }
+
+    try {
+      setLoading(true);
+      
+      // Verificar se já existe uma subscription ativa
+      const { data: existingSubscription } = await supabase
+        .from("subscriptions")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("status", "active")
+        .single();
+
+      if (existingSubscription) {
+        // Atualizar subscription existente para premium
+        const { error: updateError } = await supabase
+          .from("subscriptions")
+          .update({
+            plan_type: "premium",
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", existingSubscription.id);
+
+        if (updateError) {
+          console.error("Erro ao atualizar subscription:", updateError);
+          return { success: false, error: "Erro ao atualizar plano" };
+        }
+      } else {
+        // Criar nova subscription premium
+        const { error: insertError } = await supabase
+          .from("subscriptions")
+          .insert({
+            user_id: userId,
+            plan_type: "premium",
+            status: "active",
+            started_at: new Date().toISOString(),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          });
+
+        if (insertError) {
+          console.error("Erro ao criar subscription:", insertError);
+          return { success: false, error: "Erro ao criar plano premium" };
+        }
+      }
+
+      // Atualizar o estado local
+      await refreshSubscription();
+      
+      return { success: true };
+    } catch (error) {
+      console.error("Erro no upgrade:", error);
+      return { success: false, error: "Erro inesperado no upgrade" };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const refreshSubscription = async (): Promise<void> => {
+    if (!userId) return;
+    
+    try {
+      // Buscar subscription ativa do usuário
+      const { data, error: subscriptionError } = await supabase
+        .from("subscriptions")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("status", "active")
+        .single();
+
+      if (subscriptionError && subscriptionError.code !== "PGRST116") {
+        throw subscriptionError;
+      }
+
+      if (data) {
+        // Usuário tem subscription ativa
+        setSubscription(data);
+        const planId = data.plan_type?.trim();
+        const plan = getPlanById(planId);
+        if (plan) {
+          setCurrentPlan(plan);
+        } else {
+          setCurrentPlan(getFreePlan());
+        }
+      } else {
+        // Usuário não tem subscription ativa, usar plano gratuito
+        setSubscription(null);
+        setCurrentPlan(getFreePlan());
+      }
+    } catch (err) {
+      console.error("Erro ao atualizar subscription:", err);
+      setCurrentPlan(getFreePlan());
+    }
+  };
+
   return {
     subscription,
     currentPlan,
     loading,
     error,
+    upgradeToPremium,
+    refreshSubscription,
   };
 };
